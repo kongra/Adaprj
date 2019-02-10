@@ -22,15 +22,15 @@ procedure Main is
    begin
       if N = 0 or N = 1 then
          return (Value => N, Count => 1);
-      else
-         declare
-            C1 : constant Fibcount := Count(N - 1);
-            C2 : constant Fibcount := Count(N - 2);
-         begin
-            return (Value => C1.Value + C2.Value,
-                    Count => C1.Count + C2.Count + 1);
-         end;
       end if;
+
+      declare
+         C1 : constant Fibcount := Count(N - 1);
+         C2 : constant Fibcount := Count(N - 2);
+      begin
+         return (Value => C1.Value + C2.Value,
+                 Count => C1.Count + C2.Count + 1);
+      end;
    end Count;
 
 begin
