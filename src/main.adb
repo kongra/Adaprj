@@ -15,7 +15,7 @@ procedure Main is
    type Fibcount is
       record
          Value : Natural;
-         Count : Natural;
+         Count : Positive;
       end record;
 
    function Count(N : in Natural) return Fibcount is
