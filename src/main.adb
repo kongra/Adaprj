@@ -12,7 +12,7 @@ procedure Main is
       end if;
    end Fib;
 
-   type Fibcount is
+   type Fibcount is limited
       record
          Value : Natural;
          Count : Positive;
