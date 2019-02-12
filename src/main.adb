@@ -14,34 +14,33 @@ is
       end if;
    end Fib;
 
-   type Fibcount is limited
-      record
-         Value : Natural;
-         Count : Positive;
-      end record;
+   --  type Fibcount is limited
+   --     record
+   --        Value : Natural;
+   --        Count : Positive;
+   --     end record;
 
-   function Count (N : Natural) return Fibcount is
-   begin
-      if N = 0 or N = 1 then
-         return (Value => N, Count => 1);
-      end if;
+   --  function Count (N : Natural) return Fibcount is
+   --  begin
+   --     if N = 0 or N = 1 then
+   --        return (Value => N, Count => 1);
+   --     end if;
 
-      declare
-         C1 : constant Fibcount := Count(N - 1);
-         C2 : constant Fibcount := Count(N - 2);
-      begin
-         return (Value => C1.Value + C2.Value,
-                 Count => C1.Count + C2.Count + 1);
-      end;
-   end Count;
+   --     declare
+   --        C1 : constant Fibcount := Count(N - 1);
+   --        C2 : constant Fibcount := Count(N - 2);
+   --     begin
+   --        return (Value => C1.Value + C2.Value,
+   --                Count => C1.Count + C2.Count + 1);
+   --     end;
+   --  end Count;
 
 begin
-   -- Put_Line(Natural'Last'Image);
-   -- Put_Line(Fib(43)'Image);
-   -- Put_Line(Fib(44)'Image);
-   -- Put_Line(Fib(45)'Image);
+   Put_Line(Fib(43)'Img);
+   Put_Line(Fib(44)'Img);
+   Put_Line(Fib(45)'Img);
 
-   Put_Line(Count(41).Count'Image);
-   Put_Line(Count(42).Count'Image);
-   Put_Line(Count(43).Count'Image);
+   --  Put_Line(Count(41).Count'Image);
+   --  Put_Line(Count(42).Count'Image);
+   --  Put_Line(Count(43).Count'Image);
 end Main;
