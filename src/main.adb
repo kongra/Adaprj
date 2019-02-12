@@ -2,8 +2,10 @@
 with Ada.Text_IO;
 use  Ada.Text_IO;
 
-procedure Main is
-   function Fib(N : in Natural) return Natural is
+procedure Main
+  with SPARK_Mode => On
+is
+   function Fib (N : Natural) return Natural is
    begin
       if N = 0 or N = 1 then
          return N;
@@ -18,7 +20,7 @@ procedure Main is
          Count : Positive;
       end record;
 
-   function Count(N : in Natural) return Fibcount is
+   function Count (N : Natural) return Fibcount is
    begin
       if N = 0 or N = 1 then
          return (Value => N, Count => 1);
