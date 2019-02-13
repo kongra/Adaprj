@@ -53,9 +53,26 @@ procedure Main is
          43 =>  433494437,
          44 =>  701408733,
          45 =>  1134903170);
+
+   function Foo (N, M : Natural) return Natural is
+      (N + M + 2) with Pre => (M < 100 and N < 100);
+
+   function Fibo (N : Fib_Arg) return Natural with
+     Post => (Fibo'Result < (2 ** 31 - 2) / 2)
+   is
+   begin
+      if N = 0 or N = 1 then
+         return N;
+      else
+         return Fibo(N - 1) + Fibo(N - 2);
+      end if;
+   end Fibo;
+
+   M : constant Natural := 99;
+   N : constant Natural := 20;
+
 begin
-   -- Put_Line(Fib(45)'Img);
-   null;
+   Put_Line(Fibo(10)'Img);
 end Main;
 
 --  type Fibcount is limited
