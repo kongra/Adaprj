@@ -2,43 +2,61 @@
 with Ada.Text_IO;
 use  Ada.Text_IO;
 
-procedure Main with
-  SPARK_Mode => On
-is
+procedure Main is
+
    subtype Fib_Arg is Natural range 0 .. 45;
 
-   function Foo (N, M : Fib_Arg) return Natural is
-   begin
-      return N + M;
-   end Foo;
-
-   function Fib (N : Fib_Arg) return Natural is
-      A   : Natural := 0;
-      B   : Natural := 1;
-      Tmp : Natural;
-   begin
-      for I in 0 .. (N - 1) loop
-         Tmp := A;
-         A   := B;
-         B   := Tmp + B;
-      end loop;
-      return A;
-   end Fib;
-
+   Fib : constant array (Fib_Arg) of Natural
+     := (0  =>  0,
+         1  =>  1,
+         2  =>  1,
+         3  =>  2,
+         4  =>  3,
+         5  =>  5,
+         6  =>  8,
+         7  =>  13,
+         8  =>  21,
+         9  =>  34,
+         10 =>  55,
+         11 =>  89,
+         12 =>  144,
+         13 =>  233,
+         14 =>  377,
+         15 =>  610,
+         16 =>  987,
+         17 =>  1597,
+         18 =>  2584,
+         19 =>  4181,
+         20 =>  6765,
+         21 =>  10946,
+         22 =>  17711,
+         23 =>  28657,
+         24 =>  46368,
+         25 =>  75025,
+         26 =>  121393,
+         27 =>  196418,
+         28 =>  317811,
+         29 =>  514229,
+         30 =>  832040,
+         31 =>  1346269,
+         32 =>  2178309,
+         33 =>  3524578,
+         34 =>  5702887,
+         35 =>  9227465,
+         36 =>  14930352,
+         37 =>  24157817,
+         38 =>  39088169,
+         39 =>  63245986,
+         40 =>  102334155,
+         41 =>  165580141,
+         42 =>  267914296,
+         43 =>  433494437,
+         44 =>  701408733,
+         45 =>  1134903170);
 begin
-   for I in Fib_Arg'Range loop
-      Put_Line(I'Img & " => " & Fib(I)'Img);
-   end loop;
+   -- Put_Line(Fib(45)'Img);
+   null;
 end Main;
-
---  function Fib (N : Natural) return Natural is
---  begin
---     if N = 0 or N = 1 then
---        return N;
---     else
---        return Fib(N - 1) + Fib(N - 2);
---     end if;
---  end Fib;
 
 --  type Fibcount is limited
 --     record
