@@ -71,7 +71,8 @@ procedure Main is
    --  M : constant Natural := 99;
    --  N : constant Natural := 20;
 
-   type Long_Natural is range 0 .. 2 ** 63 - 1;
+   type    Long_Natural is range 0 .. 2 ** 63 - 1;
+   subtype Collatz_Arg  is Long_Natural range 1 .. 999_999;
 
    function Collatz_Next (N : Long_Natural) return Long_Natural is
    begin
@@ -81,9 +82,9 @@ procedure Main is
          return 3 * N + 1;
       end if;
    end Collatz_Next;
-   pragma Inline(Collatz_Next);
+   pragma Inline (Collatz_Next);
 
-   function Collatz_Len (N : Long_Natural) return Long_Natural is
+   function Collatz_Len (N : Collatz_Arg) return Long_Natural is
       Len : Long_Natural := 1;
       I   : Long_Natural := N;
    begin
@@ -93,17 +94,18 @@ procedure Main is
       end loop;
       return Len;
    end Collatz_Len;
+   pragma Inline (Collatz_Len);
 
    procedure Print_Euler_14 is
       Max_N   : Long_Natural := 1;
       Max_Len : Long_Natural := 0;
    begin
-      for N in 1 .. 999_999 loop
+      for N in Collatz_Arg'Range loop
          declare
-            Len : constant Long_Natural := Collatz_Len(Long_Natural(N));
+            Len : constant Long_Natural := Collatz_Len(N);
          begin
             if Len >= Max_Len then
-               Max_N   := Long_Natural(N);
+               Max_N   := N;
                Max_Len := Len;
             end if;
          end;
