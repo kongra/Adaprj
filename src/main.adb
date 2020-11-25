@@ -87,9 +87,10 @@ procedure Main is
    function Collatz_Len (N : Collatz_Arg) return Long_Natural is
       Len : Long_Natural := 1;
       I   : Long_Natural := N;
+      J   : Long_Natural := N;
    begin
       while I /= 1 loop
-         I   := Collatz_Next(I);
+         I   := Collatz_Next (I);
          Len := Len + 1;
       end loop;
       return Len;
@@ -102,7 +103,7 @@ procedure Main is
    begin
       for N in Collatz_Arg'Range loop
          declare
-            Len : constant Long_Natural := Collatz_Len(N);
+            Len : constant Long_Natural := Collatz_Len (N);
          begin
             if Len >= Max_Len then
                Max_N   := N;
@@ -111,9 +112,9 @@ procedure Main is
          end;
       end loop;
 
-      Put_Line("N is" & Max_N'Img &
-                 " and its Collatz sequence length is"
-                 & Max_Len'Img);
+      Put_Line ("N is" & Max_N'Img &
+                  " and its Collatz sequence length is"
+                  & Max_Len'Img);
    end Print_Euler_14;
 
 begin

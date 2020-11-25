@@ -1,6 +1,5 @@
 #!/bin/sh
-# Consider adding -gnatVa (selected validity checking mode)
-gprbuild -d -P./adaprj.gpr -j2 --subdirs=opt \
-         -cargs:Ada -O3 -march=native -Wall -Wuninitialized -pedantic -gnat2012 -fstack-check -gnatawcdfijklmnopruvzU \
+export BUILD=release
+gprbuild -vm -d -P./adaprj.gpr --subdirs=opt \
          -cargs:C   -O3 -march=native -Wall -pedantic \
          -cargs:C++ -O3 -march=native -Wall -pedantic
