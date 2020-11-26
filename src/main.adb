@@ -1,6 +1,5 @@
 --  -*- Mode: Ada -*-
 with Ada.Text_IO;
-use  Ada.Text_IO;
 
 procedure Main is
 
@@ -48,9 +47,10 @@ procedure Main is
          end;
       end loop;
 
-      Put_Line ("N is" & Max_N'Img &
-                  " and its Collatz sequence length is"
-                  & Max_Len'Img);
+      Ada.Text_IO.Put_Line
+        ("N is" & Max_N'Img & " and its Collatz sequence length is"
+           & Max_Len'Img);
+
    end Print_Euler_14;
 
 begin
