@@ -21,7 +21,6 @@ procedure Euler14 is
       end loop;
       return Len;
    end Collatz_Len;
-   pragma Inline (Collatz_Len);
 
    function Collatz_Next (N : Long_Natural) return Long_Natural is
    begin
@@ -31,7 +30,6 @@ procedure Euler14 is
          return 3 * N + 1;
       end if;
    end Collatz_Next;
-   pragma Inline (Collatz_Next);
 
    procedure Print_Euler_14 is
       Max_N   : Long_Natural := 1;
