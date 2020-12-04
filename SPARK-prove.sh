@@ -1,4 +1,5 @@
 #!/bin/bash
+export MAIN="$1"
 if [ $# -eq 0 ]
 then
     cmd="gnatprove -P./adaprj.gpr -j2 --level=0"
