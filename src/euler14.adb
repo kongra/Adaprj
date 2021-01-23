@@ -16,7 +16,9 @@ procedure Euler14 is
       I   : Long_Natural := N;
    begin
       while I /= 1 loop
+         exit when I = Long_Natural'Last;
          I   := Collatz_Next (I);
+         exit when Len = Long_Natural'Last;
          Len := Len + 1;
       end loop;
       return Len;
@@ -26,6 +28,8 @@ procedure Euler14 is
    begin
       if N rem 2 = 0 then
          return N / 2;
+      elsif N >= 3074457345618258603 then
+         return 1; -- Ending the loop immediately
       else
          return 3 * N + 1;
       end if;
