@@ -2,7 +2,7 @@ with Ada.Text_IO;
 
 procedure Euler14 is
 
-   type    Long_Natural is range 0 .. 2 ** 63 - 1;
+   type    Long_Natural is              range 0 .. 2 ** 63 - 1;
    subtype Collatz_Arg  is Long_Natural range 1 .. 999_999;
 
    function  Collatz_Len  (N :  Collatz_Arg) return Long_Natural;
@@ -25,14 +25,16 @@ procedure Euler14 is
    end Collatz_Len;
 
    function Collatz_Next (N : Long_Natural) return Long_Natural is
+      Result : Long_Natural;
    begin
       if N rem 2 = 0 then
-         return N / 2;
+         Result := N / 2;
       elsif N >= 3074457345618258603 then
-         return 1; -- Ending the loop immediately
+         Result := 1; -- Ending the loop immediately
       else
-         return 3 * N + 1;
+         Result := 3 * N + 1;
       end if;
+      return Result;
    end Collatz_Next;
 
    procedure Print_Euler_14 is
@@ -52,7 +54,7 @@ procedure Euler14 is
 
       Ada.Text_IO.Put_Line
         ("N is" & Max_N'Img & " and its Collatz sequence length is"
-           & Max_Len'Img);
+         & Max_Len'Img);
 
    end Print_Euler_14;
 
