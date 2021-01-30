@@ -21,10 +21,10 @@ project Adaprj is
    --  modes
 
    Debug_Options :=
-     ("-O0", "-g", "-gnatQ", "-gnatwe");
+     ("-O0", "-g", "-gnatQ", "-gnatwe", "-fstack-check");
 
    Release_Options :=
-     ("-O3", "-gnatn", "-march=native");
+     ("-O2", "-gnatn");
 
    package Compiler is
       case Build is
