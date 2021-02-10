@@ -1,3 +1,5 @@
+--  Copyright (c) Konrad Grzanek
+--  Created: 2019-03-13
 with Ada.Text_IO;
 
 procedure Euler14 is
