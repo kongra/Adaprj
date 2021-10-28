@@ -1,7 +1,7 @@
 --  Copyright (c) Konrad Grzanek
 --  Created: 2021-02-09
-package Prelude is
+package Telsos is
 
-   pragma Pure (Prelude);
+   pragma Pure (Telsos);
 
-end Prelude;
+end Telsos;

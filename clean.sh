@@ -1,3 +1,3 @@
 #!/bin/bash
-gprclean -r -P./adaprj.gpr -f --subdirs=opt
+gprclean -r -P./telsos.gpr -f --subdirs=opt
 rm -rf obj/gnatprove
