@@ -1,5 +1,5 @@
 generic
-   type Element is private;
+   type Element_T is private;
 package Telsos.Maybe is
 
    type Kind_T is (Nothing, Just);
@@ -9,14 +9,14 @@ package Telsos.Maybe is
          when Nothing =>
             null;
          when Just =>
-            Value : Element;
+            Value : Element_T;
       end case;
    end record;
 
    function Nothing return T is (Kind => Nothing)
      with Inline;
 
-   function Just (Value : Element) return T is (Just, Value)
+   function Just (Value : Element_T) return T is (Just, Value)
      with Inline;
 
 end Telsos.Maybe;

@@ -5,28 +5,58 @@ project telsos is
    for Object_Dir  use "obj";
    for Main        use (Main);
 
+   for Create_Missing_Dirs use "True";
+
    type Build_Type is ("debug", "release", "release_checks");
    Build : Build_Type := external ("BUILD_TYPE", "debug");
 
    Processors := external ("PROCESSORS", "0");
 
    Common_Options :=
-      ("-gnat2012", "-gnatwcfijkmqrtuvwz", "-gnaty3abBcdefhiIklmnOprtx",
-       "-Wall", "-Wuninitialized", "-Wpedantic");
-   --  Common options used for the Debug and Release modes
-   --  To force specs for all subprograms,     use -gnatys
-   --  To force Subprogram_Not_In_Alpha_Order, use -gnatyo
+     ("-gnat2012",
+      "-gnatwcfijkmqrtuvwz",
+      "-gnatwe", -- Warnings are errors
+
+      "-gnaty3aAbBcdefhiIklmnOprtx",
+      "-gnatyM99", -- Maximum line length
+      --  To force specs for all subprograms,     use -gnatys
+      --  To force Subprogram_Not_In_Alpha_Order, use -gnatyo
+
+      "-Wall",
+      "-Wuninitialized",
+      "-Wpedantic");
 
    Checks_Options :=
-     ("-gnata", "-gnatVa", "-gnato", "-fstack-check");
-   --  Common options used to enable checking for the Debug and Release_Checks
-   --  modes
+     ("-gnata", -- Enable assertions and contracts
+      "-gnatVa",
+      "-gnato",
+      "-fstack-check");
 
    Debug_Options :=
-     ("-O0", "-g", "-gnatQ", "-gnatwe", "-fstack-check");
+     ("-Og", -- No optimization
+      "-march=native",
+      "-g",
+      "-gnatQ",
+      "-gnatwe",
+      "-fstack-check");
 
    Release_Options :=
-     ("-O2", "-gnatn");
+     ("-O2",
+      "-march=native",
+      "-fomit-frame-pointer",
+      "-ffunction-sections",
+      "-gnatn");
+
+   Coverage_Options :=
+     ("-O0",
+      "-march=native",
+      "-fprofile-arcs",
+      "-ftest-coverage");
+
+   Profiling_Options :=
+     ("-g",
+      "-pg",
+      "-march=native");
 
    package Compiler is
       case Build is
@@ -45,17 +75,22 @@ project telsos is
          when "release" =>
             for Default_Switches ("Ada") use
               Common_Options
-              & Release_Options;
+              & Release_Options
+              & ("-gnatp"); -- Suppress checks
       end case;
    end Compiler;
 
    package Binder is
-      for Default_Switches ("Ada") use ("-Es");
+      for Default_Switches ("Ada") use ("-Es"); -- Symbolic traceback
    end Binder;
 
    package Builder is
       for Global_Configuration_Pragmas use "src/spark.adc";
       for Switches (others) use ("-m", "-j" & Processors);
    end Builder;
+
+   package Linker is
+      for Default_Switches ("Ada") use ("-ljemalloc");
+   end Linker;
 
 end telsos;
