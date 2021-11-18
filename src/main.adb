@@ -25,14 +25,14 @@ procedure Main is
 
    R1 : constant Maybe_Positive.T := Test_1 (10_000);
 
-   --  type MPTS is array (Positive range 1 .. 1_000) of Maybe_Positive.T;
+   type MPTS is array (Positive range 1 .. 1_000) of Maybe_Positive.T;
    --  T1 : MPTS := (others => Just (4));
 
    V1 : constant String (1 .. 1_000_000) := (others => ' ');
 
 begin
    --  Ada.Text_IO.Put_Line (Positive'Image (R1.Value));
-   --  Ada.Text_IO.Put_Line (Natural'Image (MPTS'Size));
+   Ada.Text_IO.Put_Line (Natural'Image (MPTS'Size));
    --  T1 (1) := Nothing;
    if R1.Kind = Just then
       Ada.Text_IO.Put_Line ("Testujemy");
